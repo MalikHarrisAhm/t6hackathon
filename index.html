@@ -5,13 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T6 Hackathon</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#1a1a1a',
+                            text: '#e0e0e0',
+                            accent: '#4a5568',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
 </head>
-<body class="bg-gray-100 font-sans">
-    <header class="text-black p-10">
+<body class="bg-dark-bg text-dark-text font-sans">
+    <header class="p-10">
         <div class="flex items-center">
-            
+            <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16 mr-4">
             <div>
-                <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16 mr-4">
                 <h1 class="text-4xl font-bold">T6 Hackathon</h1>
                 <p class="text-xl">Where the Brightest Muslim Minds from the Top 6 Universities in the World, Unite to Shape Our Futures</p>
             </div>
@@ -30,7 +45,7 @@
         </section>
         <section id="partners" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Our Partners</h2>
-            <ul>
+            <ul class="list-disc list-inside">
                 <li>Stanford Muslim Tech Collaborative (MTC) / Stanford MSU</li>
                 <li>Imperial STEM Muslims / Imperial ISOC</li>
             </ul>
@@ -48,10 +63,10 @@
         <section id="registration" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Registration</h2>
             <p>Registration details coming soon!</p>
-            <button class="text-black px-4 py-2 rounded">Register Interest</button>
+            <button class="bg-dark-accent text-dark-text px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Register Interest</button>
         </section>
     </main>
-    <footer class="text-black p-4 mt-8">
+    <footer class="p-4 mt-8 bg-dark-accent">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 T6 Hackathon. All rights reserved.</p>
         </div>
