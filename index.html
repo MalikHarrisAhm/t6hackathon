@@ -16,12 +16,12 @@
                             bg: '#1a1a1a',
                             text: '#e0e0e0',
                         },
-                        imperial: '#002147',
+                        imperial: '#003E74',
                         stanford: '#8C1515',
                         mit: '#A31F34',
                         cambridge: '#A3C1AD',
                         harvard: '#A51C30',
-                        oxford: '#002147',
+                        oxford: '#1C2C4C',
                     },
                 },
             },
@@ -36,11 +36,14 @@
             pointer-events: none;
             z-index: 1000;
         }
+        .university-name {
+            mix-blend-mode: normal;
+        }
     </style>
 </head>
 <body class="bg-white text-black dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
     <div id="inversion-square" class="fixed w-64 h-64 bg-white"></div>
-    <header class="p-10 relative overflow-hidden">
+    <header class="h-screen flex flex-col justify-between p-10 relative overflow-hidden">
         <div class="container mx-auto relative">
             <div class="flex justify-between items-center mb-10">
                 <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16">
@@ -50,18 +53,18 @@
                     </svg>
                 </button>
             </div>
-            <div>
-                <h1 class="text-5xl font-bold mb-4">T6 Hackathon is a community</h1>
-                <p class="text-xl mb-4">Where the <span class="font-bold">Brightest Muslim Minds</span> from the Top 6 Universities in the World, Unite to Shape Our Futures:</p>
-                <p class="text-2xl mb-6">
-                    <span class="text-imperial font-bold">Imperial</span>,
-                    <span class="text-stanford font-bold">Stanford</span>,
-                    <span class="text-mit font-bold">MIT</span>,
-                    <span class="text-cambridge font-bold">Cambridge</span>,
-                    <span class="text-harvard font-bold">Harvard</span>, and
-                    <span class="text-oxford font-bold">Oxford</span>
-                </p>
-            </div>
+        </div>
+        <div class="container mx-auto flex-grow flex items-center">
+            <h1 class="text-5xl font-bold leading-tight">
+                T6 Hackathon is a community where the Brightest Muslim Minds from 
+                <span class="university-name text-imperial">Imperial</span>, 
+                <span class="university-name text-stanford">Stanford</span>, 
+                <span class="university-name text-mit">MIT</span>, 
+                <span class="university-name text-cambridge">Cambridge</span>, 
+                <span class="university-name text-harvard">Harvard</span>, and 
+                <span class="university-name text-oxford">Oxford</span> 
+                Unite to Shape Our Futures
+            </h1>
         </div>
     </header>
     <main class="container mx-auto mt-8 p-4">
