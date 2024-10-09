@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T6 Hackathon</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&family=Source+Code+Pro:wght@300;700&family=Playfair+Display:wght@300;700&family=Roboto+Slab:wght@300;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,7 +21,10 @@
                         mit: '#A31F34',
                         cambridge: '#A3C1AD',
                         harvard: '#A51C30',
-                        oxford: '#1C2C4C',
+                        oxford: '#002147',
+                        'silicon-green': '#00FF00',
+                        'islamic-green': '#009000',
+                        'bright-muslim': '#FFA500',
                     },
                 },
             },
@@ -31,22 +34,77 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        #inversion-square {
+        #inversion-circle {
+            background-color: #E6DCC8; /* Replace with the exact color from the image */
             mix-blend-mode: difference;
             pointer-events: none;
             z-index: 1000;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+        }
+        .no-invert {
+            position: relative;
+            z-index: 1001;
         }
         .university-name {
-            mix-blend-mode: normal;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        #main-text {
+            font-size: clamp(24px, 5vw, 48px);
+            line-height: 1.4;
+        }
+        #main-text h1 {
+            display: inline;
+        }
+        #main-text span {
+            display: inline;
+        }
+        .programming-font {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .design-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .science-font {
+            font-family: 'Roboto Slab', serif;
+        }
+        .arabic {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 0.9em;
+            direction: rtl;
+            text-align: right;
+            width: 100%;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        .english {
+            text-align: left;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .university-name {
+                display: inline-block;
+                margin-bottom: 0.25em;
+            }
+            #main-text {
+                line-height: 1.5;
+            }
         }
     </style>
 </head>
 <body class="bg-white text-black dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
-    <div id="inversion-square" class="fixed w-64 h-64 bg-white"></div>
-    <header class="h-screen flex flex-col justify-between p-10 relative overflow-hidden">
-        <div class="container mx-auto relative">
-            <div class="flex justify-between items-center mb-10">
-                <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16">
+    <div id="inversion-circle" class="fixed bg-white"></div>
+    <header class="min-h-screen flex flex-col justify-center p-2 sm:p-4 md:p-6 relative overflow-hidden">
+        <div class="container mx-auto relative mb-4 sm:mb-6 md:mb-2">
+            <div class="flex flex-col sm:flex-row justify-between items-center">
+                <div class="no-invert mb-4 sm:mb-0">
+                    <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-24 sm:h-32">
+                </div>
                 <button id="theme-toggle" class="bg-black dark:bg-white rounded-full p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white dark:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -54,17 +112,27 @@
                 </button>
             </div>
         </div>
-        <div class="container mx-auto flex-grow flex items-center">
-            <h1 class="text-5xl font-bold leading-tight">
-                T6 Hackathon is a community where the Brightest Muslim Minds from 
-                <span class="university-name text-imperial">Imperial</span>, 
-                <span class="university-name text-stanford">Stanford</span>, 
-                <span class="university-name text-mit">MIT</span>, 
-                <span class="university-name text-cambridge">Cambridge</span>, 
-                <span class="university-name text-harvard">Harvard</span>, and 
-                <span class="university-name text-oxford">Oxford</span> 
-                Unite to Shape Our Futures
-            </h1>
+        <div id="main-text" class="container mx-auto">
+            <div class="arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <div class="english">
+                <h1 class="font-light">
+                    The <span class="font-bold">T6 Hackathon</span> brings together the 
+                    <span class="font-bold text-bright-muslim no-invert">brightest Muslim minds</span> 
+                    in <span class="font-bold programming-font">programming</span>, 
+                    <span class="font-bold design-font">design</span> 
+                    and 
+                    <span class="font-bold science-font">science</span>, from six of the world's most renowned universities, 
+                    <span class="university-name bg-imperial no-invert">Imperial</span>, 
+                    <span class="university-name bg-stanford no-invert">Stanford</span>, 
+                    <span class="university-name bg-cambridge no-invert">Cambridge</span>, 
+                    <span class="university-name bg-oxford no-invert">Oxford</span>, 
+                    <span class="university-name bg-harvard no-invert">Harvard</span> and 
+                    <span class="university-name bg-mit no-invert">MIT</span>, 
+                    to develop technology that brings the 
+                    <span class="font-bold text-islamic-green no-invert">Ummah</span> forward,
+                    <span class="mt-4">إِنْ شَاءَ اللّٰهُ</span>.
+                </h1>
+            </div>
         </div>
     </header>
     <main class="container mx-auto mt-8 p-4">
@@ -75,25 +143,65 @@
         <section id="details" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Event Details</h2>
             <p>Date: [Insert Date]</p>
-            <p>Location: [Insert Location]</p>
+            <p>Location: Stanford University</p>
             <p>Duration: [Insert Duration]</p>
         </section>
-        <section id="partners" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Our Partners</h2>
+        <section id="founding-team" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Founding Team</h2>
             <ul class="list-disc list-inside">
-                <li>Stanford Muslim Tech Collaborative (MTC) / Stanford MSU</li>
-                <li>Imperial STEM Muslims / Imperial ISOC</li>
+                <li>Founder: Malik Ahmed (malik@t6hackathon.org)</li>
+                Malik is a research associate at Stanford HEAR3T Lab (Healthcare AI Applied Research Team), and a full-time research assistant at Imperial College London focused on LLMs applied to Epidemiology, where he is studying MSc in Health Data Analytics and Machine Learning at Imperial College London. He is a UK Registered Pharmacist, and founder of a medication tracker app, Dosewolf, which has recieved major features from Apple, including "App of the Day" five times.
+                
+                <li>Harvard Founding Team: TBC</li>
+                <li>Stanford Founding Team: Khaulat Abdulhakeem (khaulat@t6hackathon.org)</li>
+                Khaulat is an incoming Stanford HAI (Human Centred Artificial Intelligence) Graduate Fellow, and  is currently completing her Masters in Education Data Science at Stanford University. Khaulet is a career strategist, and founder of Khaulet Adobe, helping people go from confusion to clarity in their careers.
+                
+                <li>Imperial Founding Team: Tayyab Khalid (tayyab@t6hackathon.org) and Mohammed Sharif (mohammed-s@t7hackathon.org)</li>
+                <li>Cambridge Founding Team: Mohammad Alawwami (mohammed-a@t6hackathon.org)</li>
+                <li>Oxford Founding Team: TBC</li>
+                <li>MIT Founding Team: TBC</li>
             </ul>
         </section>
-        <section id="contact" class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
-            <p>Founder: Malik Ahmed</p>
-            <p>Harvard Founding Team: TBC</p>
-            <p>Stanford Founding Team: Khaulat Abdulhakeem</p>
-            <p>Imperial Founding Team: Tayyab Khalid and Mohammed Sharif</p>
-            <p>Cambridge Founding Team: Mohammad Alawwami</p>
-            <p>Oxford Founding Team: TBC</p>
-            <p>MIT Founding Team: TBC</p>
+        <section id="faq" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">FAQ</h2>
+            <div class="space-y-2">
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-md p-4 cursor-pointer" onclick="toggleAnswer(this)">
+                    <h3 class="font-bold">Does it cost anything to participate?</h3>
+                    <div class="mt-2 hidden">
+                        <p>No, it is completely free. We are currently fundraising to be able to afford flights and accommodation for those selected to compete. If not, the event will be held remotely.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-md p-4 cursor-pointer" onclick="toggleAnswer(this)">
+                    <h3 class="font-bold">Can I participate solo?</h3>
+                    <div class="mt-2 hidden">
+                        <p>Yes, you can participate solo if you prefer. However, we encourage all applicants to select the team-matching option, which will place you in a group where each member is from a different university. This can be a great way to build connections and enrich your experience.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-md p-4 cursor-pointer" onclick="toggleAnswer(this)">
+                    <h3 class="font-bold">Can I join the committee?</h3>
+                    <div class="mt-2 hidden">
+                        <p>Each year, we open applications to join the committee between the months of August and September. Keep an eye on our website for announcements.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-md p-4 cursor-pointer" onclick="toggleAnswer(this)">
+                    <h3 class="font-bold">Where will the hackathon be hosted?</h3>
+                    <div class="mt-2 hidden">
+                        <p>The T6 Hackathon will be hosted at Stanford University, with options for remote participation if necessary.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-md p-4 cursor-pointer" onclick="toggleAnswer(this)">
+                    <h3 class="font-bold">What skills are required to participate?</h3>
+                    <div class="mt-2 hidden">
+                        <p>We welcome participants with a range of skills, including programming, design, and scientific research. Whilst evidence of innovation and creativity is considered, we value enthusiasm, a willingness to learn.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-md p-4 cursor-pointer" onclick="toggleAnswer(this)">
+                    <h3 class="font-bold">Is the event segregated?</h3>
+                    <div class="mt-2 hidden">
+                        <p>Yes, T6 Hackathon will have a seperate track for brothers and sisters. We will be doing our best to arrange the event in a way which is most pleasing to Allah e.g. allotted prayer times, no music, no free-mixing etc. However, marriage is half of our deen, and we understand this could be a means by which to meet a potential spouse. So if it is requested by enough people, we will endevour to arrange a halal match-making service during the event.</p>
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="registration" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Registration</h2>
@@ -103,26 +211,42 @@
     </main>
     <footer class="bg-black text-white dark:bg-white dark:text-black p-4 mt-8 transition-colors duration-300">
         <div class="container mx-auto text-center">
-            <p>&copy; 2024 T6 Hackathon. All rights reserved.</p>
-            <p class="text-sm mt-2">Built with love in Webflow, by @kevinhaag</p>
+            <p>&copy; The T6 Hackathon is founded and maintained by Malik Ahmed, in conjunction with the kind brothers and sisters of Islamic Societies at Imperial, Stanford, Harvard, MIT, Oxford and Cambridge. All Rights Reserved.</p>
         </div>
     </footer>
     <script>
-        const inversionSquare = document.getElementById('inversion-square');
+        const inversionCircle = document.getElementById('inversion-circle');
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
-
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX - inversionSquare.offsetWidth / 2;
-            const y = e.clientY - inversionSquare.offsetHeight / 2;
-            
-            inversionSquare.style.left = `${x}px`;
-            inversionSquare.style.top = `${y}px`;
-        });
-
+    
+        // Check if the user has a stored theme preference or default to dark mode
+        if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+        } else {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    
+        // Toggle the theme and update the preference in localStorage
         themeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
         });
+    
+        // Move the inversion circle with mouse movements
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            inversionCircle.style.left = `${x - 150}px`;
+            inversionCircle.style.top = `${y - 150}px`;
+        });
+    
+        // Toggle FAQ answers visibility
+        function toggleAnswer(element) {
+            const answer = element.querySelector('div');
+            answer.classList.toggle('hidden');
+        }
     </script>
 </body>
 </html>
