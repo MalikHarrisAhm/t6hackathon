@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T6 Hackathon</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#1a1a1a',
+                            text: '#e0e0e0',
+                        },
+                        imperial: '#002147',
+                        stanford: '#8C1515',
+                        mit: '#A31F34',
+                        cambridge: '#A3C1AD',
+                        harvard: '#A51C30',
+                        oxford: '#002147',
+                    },
+                },
+            },
+        }
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-        } 
+        }
         #inversion-square {
             mix-blend-mode: difference;
             pointer-events: none;
@@ -17,24 +38,29 @@
         }
     </style>
 </head>
-<body class="bg-white text-black">
+<body class="bg-white text-black dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
     <div id="inversion-square" class="fixed w-64 h-64 bg-white"></div>
     <header class="p-10 relative overflow-hidden">
         <div class="container mx-auto relative">
             <div class="flex justify-between items-center mb-10">
                 <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16">
-                <div class="bg-black rounded-full p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button id="theme-toggle" class="bg-black dark:bg-white rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white dark:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                </div>
+                </button>
             </div>
             <div>
                 <h1 class="text-5xl font-bold mb-4">T6 Hackathon is a community</h1>
-                <p class="text-3xl mb-2"><span class="text-red-500">web-jam</span> where <span class="text-yellow-500">sites & apps are</span></p>
-                <p class="text-3xl mb-2"><span class="text-yellow-500">built from scratch</span>, in a <span class="text-green-500">weekend</span>,</p>
-                <p class="text-3xl mb-6">with <span class="text-blue-500">little to no code</span>*.</p>
-                <p class="text-xl">Where the Brightest Muslim Minds from the Top 6 Universities in the World, Unite to Shape Our Futures</p>
+                <p class="text-xl mb-4">Where the <span class="font-bold">Brightest Muslim Minds</span> from the Top 6 Universities in the World, Unite to Shape Our Futures:</p>
+                <p class="text-2xl mb-6">
+                    <span class="text-imperial font-bold">Imperial</span>,
+                    <span class="text-stanford font-bold">Stanford</span>,
+                    <span class="text-mit font-bold">MIT</span>,
+                    <span class="text-cambridge font-bold">Cambridge</span>,
+                    <span class="text-harvard font-bold">Harvard</span>, and
+                    <span class="text-oxford font-bold">Oxford</span>
+                </p>
             </div>
         </div>
     </header>
@@ -69,10 +95,10 @@
         <section id="registration" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Registration</h2>
             <p>Registration details coming soon!</p>
-            <button class="bg-black text-white px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300 mt-4">Register Interest</button>
+            <button class="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300 mt-4">Register Interest</button>
         </section>
     </main>
-    <footer class="bg-black text-white p-4 mt-8">
+    <footer class="bg-black text-white dark:bg-white dark:text-black p-4 mt-8 transition-colors duration-300">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 T6 Hackathon. All rights reserved.</p>
             <p class="text-sm mt-2">Built with love in Webflow, by @kevinhaag</p>
@@ -80,13 +106,19 @@
     </footer>
     <script>
         const inversionSquare = document.getElementById('inversion-square');
-        
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX - inversionSquare.offsetWidth / 2;
             const y = e.clientY - inversionSquare.offsetHeight / 2;
             
             inversionSquare.style.left = `${x}px`;
             inversionSquare.style.top = `${y}px`;
+        });
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
         });
     </script>
 </body>
