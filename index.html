@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T6 Hackathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        #mouse-square {
+            transition: all 0.3s ease-out;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <div id="mouse-square" class="fixed w-64 h-64 bg-white opacity-20 z-10"></div>
+    <header class="p-10 relative overflow-hidden">
+        <div class="container mx-auto relative z-20">
+            <div class="flex justify-between items-center mb-10">
+                <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16">
+                <div class="bg-white rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-5xl font-bold mb-4">T6 Hackathon is a community</h1>
+                <p class="text-3xl mb-2"><span class="text-red-500">web-jam</span> where <span class="text-yellow-500">sites & apps are</span></p>
+                <p class="text-3xl mb-2"><span class="text-yellow-500">built from scratch</span>, in a <span class="text-green-500">weekend</span>,</p>
+                <p class="text-3xl mb-6">with <span class="text-blue-500">little to no code</span>*.</p>
+                <p class="text-xl">Where the Brightest Muslim Minds from the Top 6 Universities in the World, Unite to Shape Our Futures</p>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto mt-8 p-4">
+        <!-- Main content sections remain unchanged -->
+        <!-- ... -->
+    </main>
+    <footer class="bg-white text-black p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 T6 Hackathon. All rights reserved.</p>
+            <p class="text-sm mt-2">Built with love in Webflow, by @kevinhaag</p>
+        </div>
+    </footer>
+    <script>
+        const mouseSquare = document.getElementById('mouse-square');
+        
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX - mouseSquare.offsetWidth / 2;
+            const y = e.clientY - mouseSquare.offsetHeight / 2;
+            
+            mouseSquare.style.left = `${x}px`;
+            mouseSquare.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
