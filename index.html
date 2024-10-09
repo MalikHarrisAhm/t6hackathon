@@ -10,20 +10,21 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        #mouse-square {
-            transition: all 0.3s ease-out;
+        #inversion-square {
+            mix-blend-mode: difference;
             pointer-events: none;
+            z-index: 1000;
         }
     </style>
 </head>
-<body class="bg-black text-white">
-    <div id="mouse-square" class="fixed w-64 h-64 bg-white opacity-20 z-10"></div>
+<body class="bg-white text-black">
+    <div id="inversion-square" class="fixed w-64 h-64 bg-white"></div>
     <header class="p-10 relative overflow-hidden">
-        <div class="container mx-auto relative z-20">
+        <div class="container mx-auto relative">
             <div class="flex justify-between items-center mb-10">
                 <img src="Images/logo.png" alt="T6 Hackathon Logo" class="h-16">
-                <div class="bg-white rounded-full p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="bg-black rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                 </div>
@@ -38,24 +39,54 @@
         </div>
     </header>
     <main class="container mx-auto mt-8 p-4">
-        <!-- Main content sections remain unchanged -->
-        <!-- ... -->
+        <section id="about" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">About T6 Hackathon</h2>
+            <p>The T6 Hackathon is a pioneering event that unites the brightest Muslim programmers, scientists, and designers from the world's most renowned universities—Harvard, Oxford, Cambridge, Stanford, Imperial and MIT. This unique gathering is more than just a tech competition; it's a space where powerful, lasting connections are forged to develop cutting-edge technologies that address global challenges while creating meaningful solutions tailored to the needs of the Ummah. The T6 Hackathon is shaping the future of tech and empowering our community for generations to come, insha'Allah.</p>
+        </section>
+        <section id="details" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Event Details</h2>
+            <p>Date: [Insert Date]</p>
+            <p>Location: [Insert Location]</p>
+            <p>Duration: [Insert Duration]</p>
+        </section>
+        <section id="partners" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Our Partners</h2>
+            <ul class="list-disc list-inside">
+                <li>Stanford Muslim Tech Collaborative (MTC) / Stanford MSU</li>
+                <li>Imperial STEM Muslims / Imperial ISOC</li>
+            </ul>
+        </section>
+        <section id="contact" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+            <p>Founder: Malik Ahmed</p>
+            <p>Harvard Founding Team: TBC</p>
+            <p>Stanford Founding Team: Khaulat Abdulhakeem</p>
+            <p>Imperial Founding Team: Tayyab Khalid and Mohammed Sharif</p>
+            <p>Cambridge Founding Team: Mohammad Alawwami</p>
+            <p>Oxford Founding Team: TBC</p>
+            <p>MIT Founding Team: TBC</p>
+        </section>
+        <section id="registration" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Registration</h2>
+            <p>Registration details coming soon!</p>
+            <button class="bg-black text-white px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300 mt-4">Register Interest</button>
+        </section>
     </main>
-    <footer class="bg-white text-black p-4 mt-8">
+    <footer class="bg-black text-white p-4 mt-8">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 T6 Hackathon. All rights reserved.</p>
             <p class="text-sm mt-2">Built with love in Webflow, by @kevinhaag</p>
         </div>
     </footer>
     <script>
-        const mouseSquare = document.getElementById('mouse-square');
+        const inversionSquare = document.getElementById('inversion-square');
         
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX - mouseSquare.offsetWidth / 2;
-            const y = e.clientY - mouseSquare.offsetHeight / 2;
+            const x = e.clientX - inversionSquare.offsetWidth / 2;
+            const y = e.clientY - inversionSquare.offsetHeight / 2;
             
-            mouseSquare.style.left = `${x}px`;
-            mouseSquare.style.top = `${y}px`;
+            inversionSquare.style.left = `${x}px`;
+            inversionSquare.style.top = `${y}px`;
         });
     </script>
 </body>
