@@ -35,7 +35,7 @@
             font-family: 'Inter', sans-serif;
         }
         #inversion-circle {
-            background-color: #E6DCC8; /* Replace with the exact color from the image */
+            background-color: #E6DCC8;
             mix-blend-mode: difference;
             pointer-events: none;
             z-index: 1000;
@@ -209,8 +209,24 @@
         </section>
         <section id="registration" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Registration</h2>
-            <p>Registration details coming soon!</p>
-            <button class="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300 mt-4">Register Interest</button>
+            <p>Register your interest for the T6 Hackathon!</p>
+            <form
+                id="register-form"
+                action="https://formspree.io/f/xzzbzzae"
+                method="POST"
+                class="flex flex-col items-start gap-2 mt-4"
+                >
+                <label class="w-full">
+                    Your university email:
+                    <input type="email" name="email" required class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white text-black">
+                </label>
+                <p id="email-error" class="text-red-500 text-sm hidden">Please use your email address from Imperial (@imperial.ac.uk), Stanford (@stanford.edu), Harvard (@harvard.edu), MIT (@mit.edu), or Oxford (@ox.ac.uk).</p>
+                <label class="w-full">
+                    Your message (optional):
+                    <textarea name="message" rows="3" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white text-black"></textarea>
+                </label>
+                <button type="submit" class="bg-gray-100 text-black dark:bg-gray-800 dark:text-white px-4 py-2 rounded hover:bg-opacity-80 transition-colors duration-300 font-bold">Register Interest</button>  </form>
+            <p id="form-status" class="mt-2 hidden"></p>
         </section>
     </main>
     <footer class="bg-black text-white dark:bg-white dark:text-black p-4 mt-8 transition-colors duration-300">
@@ -251,6 +267,67 @@
             const answer = element.querySelector('div');
             answer.classList.toggle('hidden');
         }
+
+        // Handle form submission with email validation
+        const form = document.getElementById('register-form');
+        const formStatus = document.getElementById('form-status');
+        const emailInput = form.querySelector('input[name="email"]');
+        const emailError = document.getElementById('email-error');
+
+        const validDomains = [
+            'imperial.ac.uk',
+            'stanford.edu',
+            'harvard.edu',
+            'mit.edu',
+            'ox.ac.uk'
+        ];
+
+        function isValidEmail(email) {
+            const domain = email.split('@')[1];
+            return validDomains.includes(domain);
+        }
+
+        emailInput.addEventListener('input', () => {
+            if (isValidEmail(emailInput.value)) {
+                emailError.classList.add('hidden');
+            } else {
+                emailError.classList.remove('hidden');
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!isValidEmail(emailInput.value)) {
+                emailError.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formStatus.textContent = 'Thank you for registering your interest!';
+                    formStatus.classList.remove('hidden', 'text-red-500');
+                    formStatus.classList.add('text-green-500');
+                    form.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
+                formStatus.classList.remove('hidden', 'text-green-500');
+                formStatus.classList.add('text-red-500');
+            }
+
+            formStatus.classList.remove('hidden');
+        });
     </script>
 </body>
 </html>
