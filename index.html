@@ -147,156 +147,195 @@
             <p>Location: Stanford University</p>
             <p>Duration: [Insert Duration]</p>
         </section>
+<script>
+    const inversionCircle = document.getElementById('inversion-circle');
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
 
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+    // Check if the user has a stored theme preference or default to dark mode
+    if (localStorage.getItem('theme') === 'light') {
+        html.classList.remove('dark');
+    } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    }
 
-const FoundingTeam = () => {
-  return (
-    <section id="founding-team" className="container mx-auto mt-8 p-4">
-      <h2 className="text-2xl font-bold mb-6">Founding Team</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Malik Ahmed */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Malik Ahmed</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-stanford text-white text-sm px-3 py-1 rounded-full">Stanford</span>
-              <span className="inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Research Associate, Stanford HEAR3T Lab</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">AI Researcher, Imperial College London</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">MSc Health Data Analytics and Machine Learning</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Founder of Dosewolf - Award-winning medication tracker app featured as Apple's "App of the Day" five times. UK Registered Pharmacist with expertise in healthcare technology.</p>
-            </div>
-          </CardContent>
-        </Card>
+    // Toggle the theme and update the preference in localStorage
+    themeToggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        const theme = html.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+    });
 
-        {/* Mohammad Alawwami */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Mohammad Alawwami</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-cambridge text-white text-sm px-3 py-1 rounded-full">Cambridge</span>
-              <span className="inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">MEng Molecular Bioengineering, Imperial College London</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Cambridge Medicine Graduate</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Medical doctor with additional degrees in Psychology and Bioinformatics. Completed FY1-FY2 Medical Training.</p>
-            </div>
-          </CardContent>
-        </Card>
+    // Move the inversion circle with mouse movements
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        inversionCircle.style.left = `${x - 150}px`;
+        inversionCircle.style.top = `${y - 150}px`;
+    });
 
-        {/* Mohammed Sharif */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Mohammed Sharif</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">MEng Computing, Imperial College London</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Head of STEM Muslims, leading initiatives to advance Muslim careers and education at Imperial. Experienced hackathon organizer, including Europe's largest student-run event ICHack.</p>
-            </div>
-          </CardContent>
-        </Card>
+    // Toggle FAQ answers visibility
+    function toggleAnswer(element) {
+        const answer = element.querySelector('div');
+        answer.classList.toggle('hidden');
+    }
 
-        {/* Ronny Abdullah */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Ronny Abdullah</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-stanford text-white text-sm px-3 py-1 rounded-full">Stanford</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Electrical Engineering and Computer Science</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">President, MTC Stanford</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">JKCF '22 College Scholar | Elks '22 MVS Scholar. Focused on building larger initiatives within the Muslim tech community.</p>
-            </div>
-          </CardContent>
-        </Card>
+    // Handle form submission with email validation
+    const form = document.getElementById('register-form');
+    const formStatus = document.getElementById('form-status');
+    const emailInput = form.querySelector('input[name="email"]');
+    const emailError = document.getElementById('email-error');
 
-        {/* Ameen Izhac */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Ameen Izhac</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-oxford text-white text-sm px-3 py-1 rounded-full">Oxford</span>
-              <span className="inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">DPhil Computer Science, University of Oxford</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Computing graduate from Imperial College London, pursuing advanced research in Computer Science at Oxford.</p>
-            </div>
-          </CardContent>
-        </Card>
+    const validDomains = [
+        'imperial.ac.uk',
+        'stanford.edu',
+        'harvard.edu',
+        'mit.edu',
+        'ox.ac.uk'
+    ];
 
-        {/* Yusuf Izhac */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Yusuf Izhac</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-cambridge text-white text-sm px-3 py-1 rounded-full">Cambridge</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Medicine with Neuroscience, Cambridge University</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">President, Cambridge Islamic Society</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Medical student specializing in neuroscience, leading one of the UK's premier university Islamic societies.</p>
-            </div>
-          </CardContent>
-        </Card>
+    function isValidEmail(email) {
+        const domain = email.split('@')[1];
+        return validDomains.includes(domain);
+    }
 
-        {/* Rifat Emam */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Rifat Emam</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-stanford text-white text-sm px-3 py-1 rounded-full">Stanford</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Computer Science & Pre-Medical Studies, Stanford '24</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Management Leadership For Tomorrow | Thrive Scholar</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Active member of Stanford's Muslim Student board, combining technical expertise with medical aspirations.</p>
-            </div>
-          </CardContent>
-        </Card>
+    emailInput.addEventListener('input', () => {
+        if (isValidEmail(emailInput.value)) {
+            emailError.classList.add('hidden');
+        } else {
+            emailError.classList.remove('hidden');
+        }
+    });
 
-        {/* Idrees Mahmood */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Idrees Mahmood</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Electronic Information Engineering, Imperial College London</p>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">President, Imperial Islamic Society</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Penultimate year student leading one of the UK's largest university Islamic societies.</p>
-            </div>
-          </CardContent>
-        </Card>
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        if (!isValidEmail(emailInput.value)) {
+            emailError.classList.remove('hidden');
+            return;
+        }
 
-        {/* Tayyab */}
-        <Card className="bg-white dark:bg-gray-800 transition-colors duration-300">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-2">Tayyab</h3>
-            <div className="flex flex-wrap gap-2 mb-3">
-              <span className="inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
-            </div>
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-300">Electronic and Information Engineering</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Secretary of Logistics for Imperial ISOC and STEM Muslims, contributing to both technical and community initiatives.</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-};
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                formStatus.textContent = 'Thank you for registering your interest!';
+                formStatus.classList.remove('hidden', 'text-red-500');
+                formStatus.classList.add('text-green-500');
+                form.reset();
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
+            formStatus.classList.remove('hidden', 'text-green-500');
+            formStatus.classList.add('text-red-500');
+        }
 
-export default FoundingTeam;
+        formStatus.classList.remove('hidden');
+    });
+
+    // Team section functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const teamCards = document.querySelectorAll('.team-card');
+        
+        // Initialize cards with transition properties
+        teamCards.forEach(card => {
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                // Update active button styles
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('text-white');
+                    if (btn.dataset.filter !== 'all') {
+                        btn.style.backgroundColor = '';
+                    }
+                });
+                
+                button.classList.add('active');
+                if (filter !== 'all') {
+                    const bgColor = getComputedStyle(document.documentElement)
+                        .getPropertyValue(`--${filter}-color`) || '#000';
+                    button.style.backgroundColor = bgColor;
+                    button.classList.add('text-white');
+                }
+                
+                // Filter cards with animation
+                teamCards.forEach(card => {
+                    const universities = card.dataset.university.split(' ');
+                    if (filter === 'all' || universities.includes(filter)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        // Observe each team card
+        teamCards.forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-500');
+            observer.observe(card);
+        });
+
+        // Add hover effects for cards
+        teamCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const achievements = card.querySelector('.achievements-expand');
+                if (achievements) {
+                    achievements.style.maxHeight = achievements.scrollHeight + 'px';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const achievements = card.querySelector('.achievements-expand');
+                if (achievements) {
+                    achievements.style.maxHeight = '0';
+                }
+            });
+        });
+    });
+</script>
         
         <section id="faq" class="mb-8">
             <h2 class="text-2xl font-bold mb-4">FAQ</h2>
