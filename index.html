@@ -95,6 +95,99 @@
                 line-height: 1.5;
             }
         }
+        .team-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color, #000), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .university-pill {
+            transition: transform 0.2s ease;
+        }
+        
+        .university-pill:hover {
+            transform: scale(1.05);
+        }
+        
+        .team-card[data-university="stanford"] {
+            --accent-color: #8C1515;
+        }
+        
+        .team-card[data-university="imperial"] {
+            --accent-color: #003E74;
+        }
+        
+        .team-card[data-university="cambridge"] {
+            --accent-color: #A3C1AD;
+        }
+        
+        .team-card[data-university="oxford"] {
+            --accent-color: #002147;
+        }
+        
+        .achievements-expand {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .team-card:hover .achievements-expand {
+            max-height: 200px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .filter-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .filter-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .filter-button.active {
+            color: var(--active-color);
+        }
+        
+        .filter-button.active::after {
+            transform: scaleX(1);
+        }
     </style>
 </head>
 <body class="bg-white text-black dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
@@ -147,6 +240,70 @@
             <p>Location: Stanford University</p>
             <p>Duration: [Insert Duration]</p>
         </section>
+
+<section id="founding-team" class="container mx-auto mt-8 p-4">
+    <h2 class="text-2xl font-bold mb-6">Founding Team</h2>
+    
+    <div class="flex flex-wrap gap-4 mb-8 justify-center" id="team-filters">
+        <button class="filter-button active px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="all">All</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="stanford">Stanford</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="imperial">Imperial</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="cambridge">Cambridge</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="oxford">Oxford</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="team-grid">
+        <!-- Malik Ahmed -->
+        <div class="team-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-university="stanford imperial">
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Malik Ahmed</h3>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="university-pill inline-flex bg-stanford text-white text-sm px-3 py-1 rounded-full">Stanford</span>
+                    <span class="university-pill inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
+                </div>
+                <div class="bio-content space-y-2">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Research Associate, Stanford HEAR3T Lab</p>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">AI Researcher, Imperial College London</p>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">MSc Health Data Analytics and Machine Learning</p>
+                    <div class="achievements-expand">
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                            • Founder of Dosewolf - Award-winning medication tracker app<br>
+                            • Featured as Apple's "App of the Day" five times<br>
+                            • UK Registered Pharmacist<br>
+                            • Expertise in healthcare technology
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mohammad Alawwami -->
+        <div class="team-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-university="cambridge imperial">
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Mohammad Alawwami</h3>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="university-pill inline-flex bg-cambridge text-white text-sm px-3 py-1 rounded-full">Cambridge</span>
+                    <span class="university-pill inline-flex bg-imperial text-white text-sm px-3 py-1 rounded-full">Imperial</span>
+                </div>
+                <div class="bio-content space-y-2">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">MEng Molecular Bioengineering, Imperial College London</p>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Cambridge Medicine Graduate</p>
+                    <div class="achievements-expand">
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                            • Additional degrees in Psychology and Bioinformatics<br>
+                            • Completed FY1-FY2 Medical Training<br>
+                            • Medical doctor pursuing bioengineering<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add similar blocks for other team members -->
+        <!-- Make sure to add data-university attribute matching their affiliations -->
+    </div>
+</section>
+        
 <script>
     const inversionCircle = document.getElementById('inversion-circle');
     const themeToggle = document.getElementById('theme-toggle');
