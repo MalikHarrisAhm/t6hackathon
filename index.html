@@ -151,6 +151,20 @@
             max-height: 0;
             transition: max-height 0.3s ease-out;
         }
+
+        .team-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-button.active {
+            background-color: var(--university-color);
+            color: white;
+        }
         
         .team-card:hover .achievements-expand {
             max-height: 200px;
@@ -245,11 +259,13 @@
     <h2 class="text-2xl font-bold mb-6">Founding Team</h2>
     
     <div class="flex flex-wrap gap-4 mb-8 justify-center" id="team-filters">
-        <button class="filter-button active px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="all">All</button>
-        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="stanford">Stanford</button>
-        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="imperial">Imperial</button>
-        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="cambridge">Cambridge</button>
-        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="oxford">Oxford</button>
+        <button class="filter-button active px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="all" style="--university-color: #4B5563">All</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="stanford" style="--university-color: #8C1515">Stanford</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="imperial" style="--university-color: #003E74">Imperial</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="cambridge" style="--university-color: #A3C1AD">Cambridge</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="oxford" style="--university-color: #002147">Oxford</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="harvard" style="--university-color: #A51C30">Harvard</button>
+        <button class="filter-button px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all" data-filter="mit" style="--university-color: #A31F34">MIT</button>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="team-grid">
@@ -433,7 +449,7 @@
             </div>
         </div>
 
-        <!-- Tayyab -->
+        <!-- Tayyab Khalid -->
         <div class="team-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-university="imperial">
             <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">Tayyab</h3>
@@ -454,13 +470,70 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Harvard Placeholder -->
+        <div class="team-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-university="harvard">
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Harvard Representatives</h3>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="university-pill inline-flex bg-harvard text-white text-sm px-3 py-1 rounded-full">Harvard</span>
+                </div>
+                <div class="bio-content">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">TBC</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MIT Placeholder -->
+        <div class="team-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden" data-university="mit">
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">MIT Representatives</h3>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="university-pill inline-flex bg-mit text-white text-sm px-3 py-1 rounded-full">MIT</span>
+                </div>
+                <div class="bio-content">
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">TBC</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
         
 <script>
     const inversionCircle = document.getElementById('inversion-circle');
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const teamCards = document.querySelectorAll('.team-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            teamCards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    if (card.getAttribute('data-university').includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+});
 
     // Check if the user has a stored theme preference or default to dark mode
     if (localStorage.getItem('theme') === 'light') {
