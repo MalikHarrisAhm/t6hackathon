@@ -40,8 +40,16 @@
             pointer-events: none;
             z-index: 1000;
             border-radius: 50%;
-            width: 300px;
-            height: 300px;
+            width: 75px;  /* Reduced from 300px */
+            height: 75px; /* Reduced from 300px */
+            display: none;  /* Hidden by default */
+        }
+        
+        /* Only show on larger screens */
+        @media (min-width: 768px) {
+            #inversion-circle {
+                display: block;
+            }
         }
         .no-invert {
             position: relative;
@@ -554,8 +562,8 @@
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX;
         const y = e.clientY;
-        inversionCircle.style.left = `${x - 150}px`;
-        inversionCircle.style.top = `${y - 150}px`;
+        inversionCircle.style.left = `${x - 37.5}px`;  // Changed from 150 to 75 (half of new width)
+        inversionCircle.style.top = `${y - 37.5}px`;   // Changed from 150 to 75 (half of new height)
     });
 
     // Toggle FAQ answers visibility
