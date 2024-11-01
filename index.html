@@ -495,29 +495,70 @@
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-button');
     const teamCards = document.querySelectorAll('.team-card');
+    
+    // Initialize cards with transition properties
+    teamCards.forEach(card => {
+        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    });
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.backgroundColor = '';
+            });
             
             // Add active class to clicked button
             button.classList.add('active');
             
             const filter = button.getAttribute('data-filter');
             
+            // If the filter is not 'all', set the background color based on university
+            if (filter !== 'all') {
+                switch(filter) {
+                    case 'stanford':
+                        button.style.backgroundColor = '#8C1515';
+                        break;
+                    case 'imperial':
+                        button.style.backgroundColor = '#003E74';
+                        break;
+                    case 'cambridge':
+                        button.style.backgroundColor = '#A3C1AD';
+                        break;
+                    case 'oxford':
+                        button.style.backgroundColor = '#002147';
+                        break;
+                    case 'harvard':
+                        button.style.backgroundColor = '#A51C30';
+                        break;
+                    case 'mit':
+                        button.style.backgroundColor = '#A31F34';
+                        break;
+                }
+            }
+
+            // Filter the cards with animation
             teamCards.forEach(card => {
-                if (filter === 'all') {
+                const universities = card.getAttribute('data-university').split(' ');
+                
+                if (filter === 'all' || universities.includes(filter)) {
                     card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
                 } else {
-                    if (card.getAttribute('data-university').includes(filter)) {
-                        card.style.display = 'block';
-                    } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
                         card.style.display = 'none';
-                    }
+                    }, 300);
                 }
             });
         });
